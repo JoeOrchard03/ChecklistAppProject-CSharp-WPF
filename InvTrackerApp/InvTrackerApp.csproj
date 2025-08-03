@@ -16,4 +16,15 @@
       </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MaterialDesignThemes" Version="5.2.2-ci998" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="PreMadeLists.json" />
+      <Content Include="PreMadeLists.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
