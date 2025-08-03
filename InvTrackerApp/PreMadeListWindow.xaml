@@ -1,0 +1,35 @@
+﻿<!-- <Window> is the main window of the app that pops up-->
+<!-- x:Class="InventoryApp.MainWindow" links this XAML file to the C# code in the MainWindow file-->
+<!-- xmlns and xmlns:x define what resources the app can use -->
+<!-- The Title is the tile of the app and height and width is the size of the window that opens -->
+<Window x:Class="InvTrackerApp.PreMadeListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Inventory Tracker" Height="350" Width="400">
+    <Grid Margin="10">
+        <!-- Makes three rows, first two auto height based on space they need * used to take the rest of the space -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Content="Search pre-made lists" Height="Auto" Margin="0,0,0,10"/>
+        
+        <!-- StackPanel is a container that stacks it's children horizontally or vertically; grid.row assigns it to
+        the first row in the grid. -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
+            <!-- Text box is first, so it goes on the left, this is a space where users can type, giving it an x:name
+            means you can access it from the C# code -->
+            <TextBox x:Name="ItemInput" Width="250" Margin="0,0,10,0"/>
+            <!-- Button is next, content is used to put text in the button Click="AddItem_Click" makes it so it can
+            link to a method in the C# code -->
+            <Button Content="Back" Width="100" Click="GoBack_Click"/>
+        </StackPanel>
+
+        <!-- Listbox is a list of items, it is given the ItemList name so it can be accessed from the code and placed
+        in the last row of the grid -->
+        <ListBox x:Name="ItemList" Grid.Row="3"/>
+    </Grid>
+</Window>
