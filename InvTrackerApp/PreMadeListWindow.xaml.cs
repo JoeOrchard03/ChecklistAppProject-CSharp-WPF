@@ -17,11 +17,6 @@ namespace InvTrackerApp
             InitializeComponent();
             preMadeLists = LoadPreMadeLists("PreMadeLists.json");
             PreMadeLists.ItemsSource = preMadeLists;
-            Debug.WriteLine("PreMadeListWindow Loaded");
-            foreach (var list in preMadeLists)
-            {
-                Debug.WriteLine("list name is: " + list.Name);
-            }
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
