@@ -15,6 +15,6 @@ public class Helper
         //Opens new window
         newWindow.Show();
         //Closes old window
-        currentWindow.Close();
+        currentWindow.Hide();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 
 //Placed in the inventory app namespace for organization
@@ -9,6 +10,7 @@ namespace InvTrackerApp
     {
         //Defines a list of items, ObservableCollection means that when you add or remove items the UI gets notified and updated
         private ObservableCollection<string> items = new ObservableCollection<string>();
+        
 
         //This constructor runs when the window is created
         public MainWindow()
@@ -32,9 +34,17 @@ namespace InvTrackerApp
             ItemInput.Clear();
         }
 
+        public void AddItemFromPreMadeList(string itemToAdd)
+        {
+            Debug.WriteLine("Current count of items are: " + items.Count.ToString());
+            items.Add(itemToAdd);
+            Debug.WriteLine("Adding " + itemToAdd);
+            Debug.WriteLine("New count of items are: " + items.Count.ToString());
+        }
+
         private void OpenPreMadeListWindow_Click(object sender, RoutedEventArgs e)
         {
-            PreMadeListWindow window = new PreMadeListWindow();
+            PreMadeListWindow window = new PreMadeListWindow(this);
             Helper.OpenAtSamePosition(this, window);
         }
     }

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 
-public class PreMadeList
+namespace InvTrackerApp.Models
 {
-    public string Name { get; set; } = string.Empty;
-    public List<string> Items { get; set; } = new();
+    public class PreMadeList
+    {
+        public string Name { get; set; } = "Sample Packing List";
+        public List<string> Items { get; set; } = new() { "Toothbrush", "Socks", "Phone Charger" };
+    }
 }
