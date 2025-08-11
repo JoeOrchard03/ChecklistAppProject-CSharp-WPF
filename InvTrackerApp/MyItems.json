@@ -1,0 +1,10 @@
+﻿[
+  {
+    "Name": "Hiking",
+    "Items": ["Hiking boots", "Water", "Walking stick"]
+  },
+  {
+    "Name": "Drive to Work",
+    "Items": ["Keys", "Phone", "Wallet"]
+  }
+]
