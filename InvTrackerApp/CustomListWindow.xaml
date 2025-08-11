@@ -1,20 +1,40 @@
 ﻿<Window x:Class="InvTrackerApp.CustomListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Check list" Height="175" Width="300">
+        Title="Check list" Height="350" Width="400">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!-- <Button Grid.Row="0" Margin = "0,10,0,0" Content="Back" Width="Auto" Click="GoBack_Click" VerticalAlignment="Center"/> -->
-        <TextBox Grid.Row="1" Margin = "0,0,0,0" Text="Input Custom List Name" Width="Auto" VerticalAlignment="Center"/>
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>     
+                <ColumnDefinition Width="*"/>  
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column = "0" Margin="0,0,10,0" Content="Create List" Click="CreateList_Click" VerticalAlignment="Center"/>
+            <Button Grid.Column = "1" Content="Back" Click="GoBack_Click" VerticalAlignment="Center"/>
+        </Grid>
+        
+        <TextBox Grid.Row="1" Margin = "0,0,0,10" x:Name="CustomListName" Width="Auto" VerticalAlignment="Center" GotFocus="CustomListName_GotFocus" LostFocus="CustomListName_LostFocus"/>
+        
+        <Grid Grid.Row="2" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>     
+                <ColumnDefinition Width="Auto"/>  
+            </Grid.ColumnDefinitions>
+            
+            <TextBox Margin = "0,0,10,0" Grid.Column = "0" x:Name="CustomListItem" Width="Auto" VerticalAlignment="Center" GotFocus="CustomListItem_GotFocus" LostFocus="CustomListItem_LostFocus"/>
+            <Button Grid.Column = "1" Content="Add Item" Click="AddCustomListItem_Click" VerticalAlignment="Center"/>
+            
+        </Grid>
+        
+        <ListBox x:Name="CustomItemList" Grid.Row="3"/>
         
     </Grid>
-    
-   
-    
 </Window>
  

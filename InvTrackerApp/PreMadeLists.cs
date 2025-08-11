@@ -4,8 +4,8 @@ namespace InvTrackerApp.Models
 {
     public class PreMadeList
     {
-        public string Name { get; set; } = "Sample Packing List";
-        public List<string> Items { get; set; } = new() { "Toothbrush", "Socks", "Phone Charger" };
+        public string Name { get; set; }
+        public List<string> Items { get; set; } =  new List<string>();
     }
     
     public class MyItems

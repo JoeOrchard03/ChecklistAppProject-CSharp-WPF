@@ -20,7 +20,7 @@ namespace InvTrackerApp
             //InitializeComponent sets up the UI from the XAML file
             InitializeComponent();
             //Binds the ItemList listbox to the items list, now whenever items changes the listbox will update
-            items = LoadMyItems("MyItems.json");
+            items = LoadMyItems("DefaultItems.json");
             ItemList.ItemsSource = items;
         }
 
@@ -36,8 +36,8 @@ namespace InvTrackerApp
             //Clears the ItemInput ready for the next item
             ItemInput.Clear();
             
-            var output = JsonSerializer.Serialize(items);
-            File.WriteAllText("MyItems.json", output);
+            // var output = JsonSerializer.Serialize(items);
+            // File.WriteAllText("MyItems.json", output);
         }
 
         public void AddItemFromPreMadeList(string itemToAdd)

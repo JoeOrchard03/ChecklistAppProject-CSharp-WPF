@@ -63,7 +63,7 @@
             </ListBox.ItemTemplate>    
         </ListBox>        
         
-        <Button Grid.Row="2" Margin = "0,10,0,0" Content="Create Custom List" Width="Auto" Click="CreateCustomList_Click" VerticalAlignment="Center"/>
+        <Button Grid.Row="2" Margin = "0,10,0,0" Content="Create Custom List" Width="Auto" Click="OpenCreateCustomListWindow_Click" VerticalAlignment="Center"/>
         
     </Grid>
 </Window>
