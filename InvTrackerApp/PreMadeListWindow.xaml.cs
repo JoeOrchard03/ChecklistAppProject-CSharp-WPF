@@ -53,5 +53,10 @@ namespace InvTrackerApp
                 }
             }
         }
+
+        private void CreateCustomList_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Create Custom List");
+        }
     }
 }

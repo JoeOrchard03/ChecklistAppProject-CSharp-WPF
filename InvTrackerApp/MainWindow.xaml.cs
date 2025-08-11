@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
+using InvTrackerApp.Models;
 
 //Placed in the inventory app namespace for organization
 namespace InvTrackerApp
@@ -10,7 +13,6 @@ namespace InvTrackerApp
     {
         //Defines a list of items, ObservableCollection means that when you add or remove items the UI gets notified and updated
         private ObservableCollection<string> items = new ObservableCollection<string>();
-        
 
         //This constructor runs when the window is created
         public MainWindow()
@@ -18,6 +20,7 @@ namespace InvTrackerApp
             //InitializeComponent sets up the UI from the XAML file
             InitializeComponent();
             //Binds the ItemList listbox to the items list, now whenever items changes the listbox will update
+            items = LoadMyItems("MyItems.json");
             ItemList.ItemsSource = items;
         }
 
@@ -32,6 +35,9 @@ namespace InvTrackerApp
             items.Add(input);
             //Clears the ItemInput ready for the next item
             ItemInput.Clear();
+            
+            var output = JsonSerializer.Serialize(items);
+            File.WriteAllText("MyItems.json", output);
         }
 
         public void AddItemFromPreMadeList(string itemToAdd)
@@ -46,6 +52,13 @@ namespace InvTrackerApp
         {
             PreMadeListWindow window = new PreMadeListWindow(this);
             Helper.OpenAtSamePosition(this, window);
+        }
+        
+        private ObservableCollection<string> LoadMyItems(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            var lists = JsonSerializer.Deserialize<List<string>>(json);
+            return new ObservableCollection<string>(lists ?? new List<string>());
         }
     }
 }
