@@ -10,7 +10,7 @@ using static InvTrackerApp.Helper;
 
 public partial class CustomListWindow : Window
 {
-    public PreMadeListWindow PreMadeListWindow { get; }
+    public PreMadeListWindow preMadeListWindow;
     public string EnterCustomListNamePrompt { get; set; } = "Input Custom List Name";
     public string EnterCustomListItemPrompt { get; set; } = "Input List Item";
     
@@ -19,7 +19,7 @@ public partial class CustomListWindow : Window
     public CustomListWindow(PreMadeListWindow preMadeListWindow)
     {
         InitializeComponent();
-        PreMadeListWindow = preMadeListWindow;
+        this.preMadeListWindow = preMadeListWindow;
         CustomItemList.ItemsSource = customListItems;
         CustomListName.Text = EnterCustomListNamePrompt;
         CustomListItem.Text = EnterCustomListItemPrompt;
@@ -27,7 +27,7 @@ public partial class CustomListWindow : Window
     
     private void GoBack_Click(object sender, RoutedEventArgs e)
     {
-        OpenAtSamePosition(this, PreMadeListWindow);
+        OpenAtSamePosition(this, preMadeListWindow);
     }
     
     private void CreateList_Click(object sender, RoutedEventArgs e)
@@ -53,8 +53,8 @@ public partial class CustomListWindow : Window
 
         Debug.WriteLine($"Created custom list called: {list.Name}, it contains: {string.Join(", ", list.Items)}");
 
-        var input = JsonSerializer.Serialize(list);
-        File.WriteAllText("PreMadeLists.json", input);
+        PreMadeListStorage.Save(list);
+        preMadeListWindow.preMadeLists.Add(list);
     }
 
     private void AddCustomListItem_Click(object sender, RoutedEventArgs e)

@@ -13,26 +13,31 @@ namespace InvTrackerApp
     public partial class PreMadeListWindow : Window
     {
         public ObservableCollection<PreMadeList> preMadeLists = new ObservableCollection<PreMadeList>();
+        private static bool firstLoad = true;
         public MainWindow MainWindow { get; }
 
         public PreMadeListWindow(MainWindow mainWindow)
         {
             InitializeComponent();
-            MainWindow = mainWindow;    
-            preMadeLists = LoadPreMadeLists("PreMadeLists.json");
+            MainWindow = mainWindow;
+            if (firstLoad)
+            {
+                File.WriteAllText(PreMadeListStorage.PreMadeListFilePath, string.Empty);
+                firstLoad = false;  
+            }
+            Debug.WriteLine("Loading from " + PreMadeListStorage.PreMadeListFilePath);
+            preMadeLists.Clear();
+            foreach (var item in PreMadeListStorage.Load())
+            {
+                preMadeLists.Add(item);
+            }
+            Debug.WriteLine("Loaded from " + PreMadeListStorage.PreMadeListFilePath);
             PreMadeLists.ItemsSource = preMadeLists;
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             OpenAtSamePosition(this, MainWindow);
-        }
-
-        private ObservableCollection<PreMadeList> LoadPreMadeLists(string filePath)
-        {
-            string json = File.ReadAllText(filePath);
-            var lists = JsonSerializer.Deserialize<List<PreMadeList>>(json);
-            return new ObservableCollection<PreMadeList>(lists ?? new List<PreMadeList>());
         }
 
         private void ListAddButton_Click(object sender, RoutedEventArgs e)

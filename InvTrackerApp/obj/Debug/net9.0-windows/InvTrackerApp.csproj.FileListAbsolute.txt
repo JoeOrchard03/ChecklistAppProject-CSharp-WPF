@@ -46,7 +46,7 @@ D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows
 D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\InvTrackerApp.pdb
 D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\InvTrackerApp.genruntimeconfig.cache
 D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\ref\InvTrackerApp.dll
-D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\Debug\net9.0-windows\PreMadeLists.json
-D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\InvTrackerApp_Content.g.cs
 D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\CustomListWindow.baml
 D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\CustomListWindow.g.cs
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\Debug\net9.0-windows\PreMadeLists.json
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\obj\Debug\net9.0-windows\InvTrackerApp_Content.g.cs
