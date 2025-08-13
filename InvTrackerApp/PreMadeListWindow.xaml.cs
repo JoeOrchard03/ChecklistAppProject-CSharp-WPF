@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -40,6 +41,18 @@ namespace InvTrackerApp
             OpenAtSamePosition(this, MainWindow);
         }
 
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton  = (Button)sender as Button;
+            
+            if (clickedButton?.Tag is PreMadeList list)
+            {
+                MessageBox.Show($"Deleting {list.Name} from pre-made lists, items contained: {string.Join(", ", list.Items)}");
+                preMadeLists.Remove(list);
+                PreMadeListStorage.Remove(list.Name);
+            }
+        }
+        
         private void ListAddButton_Click(object sender, RoutedEventArgs e)
         {
             //Converts sender to the button variable type.
@@ -48,14 +61,23 @@ namespace InvTrackerApp
             //Checks if the button's tag is a PreMadeList which it should be, assigns it to the list variable
             if (clickedButton?.Tag is PreMadeList list)
             {
-                MessageBox.Show($"Adding {list.Name}'s items: {string.Join(", ", list.Items)} to main list");
+                MessageBox.Show($"Adding {list.Name}'s items: {string.Join(", ", list.Items.Select(i => i.Text))} to main list");
                 if (MainWindow != null)
                 {
-                    foreach (string i in list.Items)
+                    foreach (ChecklistItem i in list.Items)
                     {
                         MainWindow.AddItemFromPreMadeList(i);
                     }
                 }
+                
+                foreach (var l in preMadeLists)
+                {
+                    // Notify UI that CanAdd might have changed
+                    var descriptor = DependencyPropertyDescriptor.FromProperty(
+                        Button.IsEnabledProperty, typeof(Button));
+                }
+                
+                PreMadeLists.Items.Refresh();
             }
         }
 

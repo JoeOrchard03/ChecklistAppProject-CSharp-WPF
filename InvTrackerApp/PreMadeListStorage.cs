@@ -83,4 +83,25 @@ public static class PreMadeListStorage
         var updatedJson = JsonSerializer.Serialize(existingLists, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(PreMadeListFilePath, updatedJson);
     }
+    
+    public static void Remove(string listName)
+    {
+        if (!File.Exists(PreMadeListFilePath))
+            return;
+
+        // Load current lists
+        var json = File.ReadAllText(PreMadeListFilePath);
+        var existingLists = JsonSerializer.Deserialize<List<PreMadeList>>(json) ?? new List<PreMadeList>();
+
+        // Find the list with the given name and remove it
+        var listToRemove = existingLists.FirstOrDefault(l => l.Name == listName);
+        if (listToRemove != null)
+        {
+            existingLists.Remove(listToRemove);
+
+            // Save updated collection back to JSON
+            var updatedJson = JsonSerializer.Serialize(existingLists, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(PreMadeListFilePath, updatedJson);
+        }
+    }
 }    

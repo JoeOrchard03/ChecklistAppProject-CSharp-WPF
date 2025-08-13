@@ -43,6 +43,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                     
                         <TextBlock Grid.Column="0" 
@@ -54,9 +55,16 @@
                                    Margin="0,0,10,0" />
                         
                         <Button Grid.Column="1" 
+                                Content="Delete" 
+                                Margin="0,0,10,0"
+                                Click="RemoveButton_Click" 
+                                Tag="{Binding}"/>
+                        
+                        <Button Grid.Column="2" 
                                 Content="Add" 
                                 Click="ListAddButton_Click" 
-                                Tag="{Binding}"/>
+                                Tag="{Binding}"
+                                IsEnabled="{Binding CanAdd}"/>
                     </Grid>
                     
                 </DataTemplate>

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
 using InvTrackerApp.Models;
 
 namespace InvTrackerApp;
@@ -14,7 +15,7 @@ public partial class CustomListWindow : Window
     public string EnterCustomListNamePrompt { get; set; } = "Input Custom List Name";
     public string EnterCustomListItemPrompt { get; set; } = "Input List Item";
     
-    private ObservableCollection<string> customListItems = new ObservableCollection<string>();
+    private ObservableCollection<ChecklistItem> customListItems = new ObservableCollection<ChecklistItem>();
     
     public CustomListWindow(PreMadeListWindow preMadeListWindow)
     {
@@ -48,13 +49,18 @@ public partial class CustomListWindow : Window
 
         foreach (var i in customListItems)
         {
-            list.Items.Add(i);
+            list.Items.Add(new ChecklistItem { Text = i.Text, IsChecked = i.IsChecked });;
         }
 
         Debug.WriteLine($"Created custom list called: {list.Name}, it contains: {string.Join(", ", list.Items)}");
 
         PreMadeListStorage.Save(list);
         preMadeListWindow.preMadeLists.Add(list);
+
+        
+        CustomListName.Text = EnterCustomListNamePrompt;
+        CustomListItem.Text = EnterCustomListItemPrompt;
+        customListItems.Clear();
     }
 
     private void AddCustomListItem_Click(object sender, RoutedEventArgs e)
@@ -62,8 +68,7 @@ public partial class CustomListWindow : Window
         Debug.WriteLine("Add custom list item");
         var input = CustomListItem.Text.Trim();
         if(string.IsNullOrEmpty(input) || input == EnterCustomListItemPrompt) {return;}
-        customListItems.Add(input);
-        input = null;
+        customListItems.Add(new ChecklistItem { Text = input });
         CustomListItem.Text = "";
     }
     

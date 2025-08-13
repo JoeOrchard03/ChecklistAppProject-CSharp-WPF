@@ -33,7 +33,15 @@
             
         </Grid>
         
-        <ListBox x:Name="CustomItemList" Grid.Row="3"/>
+        <ListBox x:Name="CustomItemList" Grid.Row="3">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text = "{Binding Text}"
+                               VerticalAlignment="Center" 
+                               TextWrapping="Wrap"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         
     </Grid>
 </Window>

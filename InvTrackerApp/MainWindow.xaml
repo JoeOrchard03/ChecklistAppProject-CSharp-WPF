@@ -31,6 +31,40 @@
 
         <!-- Listbox is a list of items, it is given the ItemList name so it can be accessed from the code and placed
         in the last row of the grid -->
-        <ListBox x:Name="ItemList" Grid.Row="3"/>
+        <ListBox x:Name="ItemList" Grid.Row="3" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                        
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" 
+
+                                   Text="{Binding Text}" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Stretch"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,10,0" />
+                            
+                        <Button Grid.Column="1" 
+                                Content="Delete" 
+                                Margin="0,0,10,0"
+                                Click="RemoveButton_Click" 
+                                Tag="{Binding}"/>
+                            
+                        <Button Grid.Column="2" 
+                                Content="Check Off" 
+                                Click="CheckItemOff_Click" 
+                                Tag="{Binding}"/>
+                    </Grid>
+                        
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>   
+        
     </Grid>
 </Window>

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Controls;
 using InvTrackerApp.Models;
 
 //Placed in the inventory app namespace for organization
@@ -12,7 +13,7 @@ namespace InvTrackerApp
     public partial class MainWindow : Window
     {
         //Defines a list of items, ObservableCollection means that when you add or remove items the UI gets notified and updated
-        private ObservableCollection<string> items = new ObservableCollection<string>();
+        private ObservableCollection<ChecklistItem> items = new ObservableCollection<ChecklistItem>();
 
         //This constructor runs when the window is created
         public MainWindow()
@@ -32,33 +33,49 @@ namespace InvTrackerApp
             //Make sure input is not empty
             if (string.IsNullOrEmpty(input)) return;
             //Add item to the list, updating the listbox
-            items.Add(input);
+            items.Add(new ChecklistItem { Text = input });
             //Clears the ItemInput ready for the next item
             ItemInput.Clear();
-            
-            // var output = JsonSerializer.Serialize(items);
-            // File.WriteAllText("MyItems.json", output);
         }
 
-        public void AddItemFromPreMadeList(string itemToAdd)
+        public void AddItemFromPreMadeList(ChecklistItem itemToAdd)
         {
             Debug.WriteLine("Current count of items are: " + items.Count.ToString());
             items.Add(itemToAdd);
-            Debug.WriteLine("Adding " + itemToAdd);
+            Debug.WriteLine("Adding " + itemToAdd.Text);
             Debug.WriteLine("New count of items are: " + items.Count.ToString());
         }
 
+        public void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Deleting item");
+            Button clickedButton  = (Button)sender as Button;
+            
+            if (clickedButton?.Tag is ChecklistItem item)
+            {
+                items.Remove(item);
+            }
+        }
+        
+        public void CheckItemOff_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Checking off item");
+        }
+
+
         private void OpenPreMadeListWindow_Click(object sender, RoutedEventArgs e)
         {
+            PreMadeList.MainListItems = items;
+            
             PreMadeListWindow window = new PreMadeListWindow(this);
             Helper.OpenAtSamePosition(this, window);
         }
         
-        private ObservableCollection<string> LoadMyItems(string filePath)
+        private ObservableCollection<ChecklistItem> LoadMyItems(string filePath)
         {
             string json = File.ReadAllText(filePath);
-            var lists = JsonSerializer.Deserialize<List<string>>(json);
-            return new ObservableCollection<string>(lists ?? new List<string>());
+            var list = JsonSerializer.Deserialize<List<string>>(json);
+            return new ObservableCollection<ChecklistItem>(list?.Select(x => new ChecklistItem { Text = x }) ?? new List<ChecklistItem>());
         }
     }
 }
