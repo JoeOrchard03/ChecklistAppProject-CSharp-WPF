@@ -9,7 +9,7 @@ namespace InvTrackerApp.Models
 {
     public class ChecklistItem : INotifyPropertyChanged
     {
-        public string Text { get; set; }
+        public string Text { get; set; } = string.Empty;
 
         private bool isChecked;
         
@@ -26,7 +26,7 @@ namespace InvTrackerApp.Models
             }
         }
         
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

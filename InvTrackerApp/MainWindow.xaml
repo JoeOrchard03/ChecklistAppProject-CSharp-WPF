@@ -43,12 +43,20 @@
                         </Grid.ColumnDefinitions>
                         
                         <TextBlock Grid.Column="0" 
-
                                    Text="{Binding Text}" 
                                    VerticalAlignment="Center" 
-                                   HorizontalAlignment="Stretch"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,10,0" />
+                                   Margin="0,0,10,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsChecked}" Value="True">
+                                            <Setter Property="Foreground" Value="Gray"/>
+                                            <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>    
+                            </TextBlock.Style>
+                        </TextBlock>    
                             
                         <Button Grid.Column="1" 
                                 Content="Delete" 
@@ -56,10 +64,10 @@
                                 Click="RemoveButton_Click" 
                                 Tag="{Binding}"/>
                             
-                        <Button Grid.Column="2" 
-                                Content="Check Off" 
-                                Click="CheckItemOff_Click" 
-                                Tag="{Binding}"/>
+                        <CheckBox Grid.Column="2" 
+                                  IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                  VerticalAlignment="Center"/>
+                        
                     </Grid>
                         
                 </DataTemplate>
