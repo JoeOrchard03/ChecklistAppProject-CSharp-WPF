@@ -18,10 +18,12 @@ namespace InvTrackerApp
         //This constructor runs when the window is created
         public MainWindow()
         {
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+            {
+                MessageBox.Show(e.ExceptionObject.ToString(), "Unhandled Exception");
+            };
             //InitializeComponent sets up the UI from the XAML file
             InitializeComponent();
-            //Loads any items from the default items json
-            items = LoadMyItems("DefaultItems.json");
             //Binds the ItemList listbox to the items list, now whenever items changes the listbox will update
             ItemList.ItemsSource = items;
         }

@@ -1,0 +1,9 @@
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\InvTrackerApp.exe
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\PreMadeLists.json
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\InvTrackerApp.dll
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\InvTrackerApp.deps.json
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\InvTrackerApp.runtimeconfig.json
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\InvTrackerApp.pdb
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\MaterialDesignColors.dll
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\MaterialDesignThemes.Wpf.dll
+D:\temp\git\InventorTrackerProject-CSharp\InvTrackerApp\bin\net9.0-windows\publish\Microsoft.Xaml.Behaviors.dll
