@@ -20,8 +20,9 @@ namespace InvTrackerApp
         {
             //InitializeComponent sets up the UI from the XAML file
             InitializeComponent();
-            //Binds the ItemList listbox to the items list, now whenever items changes the listbox will update
+            //Loads any items from the default items json
             items = LoadMyItems("DefaultItems.json");
+            //Binds the ItemList listbox to the items list, now whenever items changes the listbox will update
             ItemList.ItemsSource = items;
         }
 
@@ -38,9 +39,11 @@ namespace InvTrackerApp
             ItemInput.Clear();
         }
 
+        //Adds each item from a pre-made list
         public void AddItemFromPreMadeList(ChecklistItem itemToAdd)
         {
             Debug.WriteLine("Current count of items are: " + items.Count.ToString());
+            //Adds item to the items collection
             items.Add(itemToAdd);
             Debug.WriteLine("Adding " + itemToAdd.Text);
             Debug.WriteLine("New count of items are: " + items.Count.ToString());
@@ -49,28 +52,29 @@ namespace InvTrackerApp
         public void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine("Deleting item");
+            //Gets the type of the button that was clicked
             Button clickedButton  = (Button)sender as Button;
             
             if (clickedButton?.Tag is ChecklistItem item)
             {
+                //Remove item from collection, as it is an observable collection, will also remove it from listbox
                 items.Remove(item);
             }
         }
+
         
-        public void CheckItemOff_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("Checking off item");
-        }
-
-
         private void OpenPreMadeListWindow_Click(object sender, RoutedEventArgs e)
         {
+            //Gives PreMadeList a refernce to the items in the main list
             PreMadeList.MainListItems = items;
             
+            //Opens a new PreMadeListWindow
             PreMadeListWindow window = new PreMadeListWindow(this);
+            //Helper function to open the new window in the same place as the currently opened window's position
             Helper.OpenAtSamePosition(this, window);
         }
         
+        //Load items from json
         private ObservableCollection<ChecklistItem> LoadMyItems(string filePath)
         {
             string json = File.ReadAllText(filePath);

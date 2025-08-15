@@ -9,10 +9,12 @@ namespace InvTrackerApp.Models
 {
     public class ChecklistItem : INotifyPropertyChanged
     {
+        //Name of item
         public string Text { get; set; } = string.Empty;
 
+        //Whether it has been ticked off yet
         private bool isChecked;
-        
+
         public bool IsChecked
         {
             get => isChecked;

@@ -7,7 +7,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Check list" Height="350" Width="400">
     <Grid Margin="10">
-        <!-- Makes three rows, first two auto height based on space they need * used to take the rest of the space -->
+        <!-- Makes four rows, first two auto height based on space they need * used to take the rest of the space -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -15,6 +15,7 @@
             <RowDefinition Height="*"/> 
         </Grid.RowDefinitions>
 
+        <!-- Button to open pre made list window -->
         <Button Grid.Row="0" Content="Search pre-made lists" Click = "OpenPreMadeListWindow_Click"
                 Height="Auto" Margin="0,0,0,10"/>
         
@@ -32,9 +33,10 @@
         <!-- Listbox is a list of items, it is given the ItemList name so it can be accessed from the code and placed
         in the last row of the grid -->
         <ListBox x:Name="ItemList" Grid.Row="3" HorizontalContentAlignment="Stretch">
+            <!-- Item template so all elements added to the listbox will have these applied to them -->
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                        
+                    <!-- New grid for managing the layout of the listbox items elements -->
                     <Grid Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -46,6 +48,7 @@
                                    Text="{Binding Text}" 
                                    VerticalAlignment="Center" 
                                    Margin="0,0,10,0">
+                            <!-- Styling options for being able to strike through and grey out text after ticking off item -->
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>
@@ -57,13 +60,14 @@
                                 </Style>    
                             </TextBlock.Style>
                         </TextBlock>    
-                            
+                        
                         <Button Grid.Column="1" 
                                 Content="Delete" 
                                 Margin="0,0,10,0"
                                 Click="RemoveButton_Click" 
                                 Tag="{Binding}"/>
                             
+                        <!-- Checkbox for ticking off item -->
                         <CheckBox Grid.Column="2" 
                                   IsChecked="{Binding IsChecked, Mode=TwoWay}"
                                   VerticalAlignment="Center"/>

@@ -60,6 +60,7 @@
                                 Click="RemoveButton_Click" 
                                 Tag="{Binding}"/>
                         
+                        <!-- Button is enabled if the list has not already been added to the main list -->
                         <Button Grid.Column="2" 
                                 Content="Add" 
                                 Click="ListAddButton_Click" 
